@@ -255,46 +255,22 @@ export function Dashboard() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  <div className="p-4 bg-zinc-800 rounded-lg border border-zinc-700">
-                    <h3 className="text-sm font-semibold text-emerald-400 mb-2">Today's Top Insights</h3>
-                    <ul className="space-y-2 text-sm text-zinc-300">
-                      <li className="flex items-start">
-                        <span className="text-emerald-400 mr-2">•</span>
-                        <span>DCI scores above 85 indicate dominant edge in upcoming matchups</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-emerald-400 mr-2">•</span>
-                        <span>Monitor momentum shifts in real-time with our live tracking system</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-emerald-400 mr-2">•</span>
-                        <span>Historical performance data shows 89% accuracy on high-confidence predictions</span>
-                      </li>
-                    </ul>
-                  </div>
-                  
-                  <div className="p-4 bg-zinc-800 rounded-lg border border-zinc-700">
-                    <h3 className="text-sm font-semibold text-emerald-400 mb-2">DCI Score Guide</h3>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center justify-between">
-                        <span className="text-zinc-300">🟢 85-100</span>
-                        <span className="text-zinc-400">Dominant Edge</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-zinc-300">🔵 70-84</span>
-                        <span className="text-zinc-400">Technical Advantage</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-zinc-300">🟡 55-69</span>
-                        <span className="text-zinc-400">Balanced Matchup</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-zinc-300">🔴 &lt;55</span>
-                        <span className="text-zinc-400">Potential Upset</span>
-                      </div>
-                    </div>
-                  </div>
+                <div className="p-4 bg-zinc-800 rounded-lg border border-zinc-700">
+                  <h3 className="text-sm font-semibold text-emerald-400 mb-2">Today's Top Insights</h3>
+                  <ul className="space-y-2 text-sm text-zinc-300">
+                    <li className="flex items-start">
+                      <span className="text-emerald-400 mr-2">•</span>
+                      <span>DCI scores above 85 indicate dominant edge in upcoming matchups</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-emerald-400 mr-2">•</span>
+                      <span>Monitor momentum shifts in real-time with our live tracking system</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-emerald-400 mr-2">•</span>
+                      <span>Historical performance data shows 89% accuracy on high-confidence predictions</span>
+                    </li>
+                  </ul>
                 </div>
               </CardContent>
             </Card>

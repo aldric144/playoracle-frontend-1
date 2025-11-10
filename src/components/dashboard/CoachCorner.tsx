@@ -90,6 +90,42 @@ export function CoachCorner({ gameId }: CoachCornerProps) {
           </div>
         </div>
       )}
+
+      {/* DCI Score Guide */}
+      <div className="p-4 bg-[#101626] rounded-lg border border-emerald-500/20">
+        <div className="border-t border-zinc-700 -mx-4 -mt-4 mb-4"></div>
+        <h3 className="text-sm font-semibold text-emerald-400 mb-3">DCI Score Guide</h3>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
+              <span className="text-zinc-300">85-100</span>
+            </div>
+            <span className="text-zinc-400">Dominant Edge</span>
+          </div>
+          <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+              <span className="text-zinc-300">70-84</span>
+            </div>
+            <span className="text-zinc-400">Technical Advantage</span>
+          </div>
+          <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <span className="text-zinc-300">55-69</span>
+            </div>
+            <span className="text-zinc-400">Balanced Matchup</span>
+          </div>
+          <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <span className="text-zinc-300">&lt;55</span>
+            </div>
+            <span className="text-zinc-400">Potential Upset</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
