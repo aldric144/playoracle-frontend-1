@@ -1,0 +1,160 @@
+/* HDR Cinematic Color Mapping for Phase 5.2 */
+/* Film-grade contrast and P3 wide color gamut support */
+
+:root {
+  /* HDR Base Colors */
+  --hdr-white: rgba(255, 255, 255, 0.94);
+  --hdr-black: #050505;
+  --neural-green: #00E676;
+  --neural-green-bright: #00FF88;
+  --neural-purple: #9B6BFF;
+  
+  /* Cinematic Contrast */
+  --contrast-level: 1.08;
+  --saturation-level: 1.12;
+  
+  /* Motion Timing */
+  --anticipation-duration: 0.1s;
+  --snap-duration: 0.09s;
+  --ripple-duration: 0.09s;
+}
+
+/* P3 Wide Color Gamut Support */
+@media (color-gamut: p3) {
+  :root {
+    --neural-green: color(display-p3 0 0.902 0.482);
+    --neural-green-bright: color(display-p3 0 1 0.533);
+    --neural-purple: color(display-p3 0.608 0.420 1);
+  }
+}
+
+/* Light Mode Adaptation */
+@media (prefers-color-scheme: light) {
+  :root {
+    --hdr-black: #0b0b0b;
+    --hdr-white: rgba(255, 255, 255, 0.98);
+    --contrast-level: 1.05;
+    --saturation-level: 1.08;
+  }
+}
+
+/* HDR Background Layer */
+.hdr-background {
+  background-color: var(--hdr-black);
+  filter: contrast(var(--contrast-level)) saturate(var(--saturation-level));
+}
+
+/* Cinematic Text Glow */
+.cinematic-glow {
+  color: var(--neural-green);
+  text-shadow: 
+    0 0 20px var(--neural-green),
+    0 0 40px var(--neural-green),
+    0 0 60px rgba(0, 230, 118, 0.3);
+}
+
+/* Soft Light Blend Mode for Overlays */
+.soft-light-overlay {
+  mix-blend-mode: soft-light;
+  opacity: 0.8;
+}
+
+/* CTA Anticipation & Overshoot */
+.cta-button {
+  transition: transform var(--snap-duration) ease-out;
+  touch-action: manipulation;
+}
+
+.cta-button:active {
+  transform: scale(0.95);
+}
+
+.cta-button:hover {
+  animation: cta-anticipation 0.35s ease-out;
+}
+
+@keyframes cta-anticipation {
+  0% { transform: scale(1); }
+  30% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+/* Button Ripple Effect */
+.button-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--neural-green);
+  opacity: 0.6;
+  transform: scale(0);
+  animation: ripple var(--ripple-duration) ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Performance Optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+.static-layer {
+  will-change: auto;
+}
+
+/* Hydration Fade-in */
+.fade-in-150 {
+  animation: fadeIn 150ms ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scene Containment */
+.scene-wrapper {
+  contain: layout paint style;
+  backface-visibility: hidden;
+  isolation: isolate;
+}
+
+/* Ambient Background Animation - CSS Keyframes */
+@keyframes ambientDrift {
+  0%, 100% {
+    transform: translate(0, 0) translateZ(0);
+  }
+  50% {
+    transform: translate(50px, 30px) translateZ(0);
+  }
+}
+
+.ambient-drift {
+  animation: ambientDrift 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .cta-button:hover {
+    animation: none;
+  }
+  
+  .button-ripple {
+    animation: none;
+  }
+  
+  * {
+    animation-duration: 0.01s !important;
+    transition-duration: 0.01s !important;
+  }
+}

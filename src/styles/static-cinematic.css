@@ -1,0 +1,161 @@
+/* Static Cinematic Mode - Lightweight CSS-only animations */
+
+.static-landing {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0a0f0d 0%, #07130f 50%, #091913 100%);
+  color: #e5e7eb;
+}
+
+/* Hero Title Glow - Single radial gradient, no filters */
+.hero-title {
+  position: relative;
+}
+
+.hero-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  width: min(60vw, 800px);
+  height: min(60vw, 800px);
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(0, 230, 118, 0.20) 0%,
+    rgba(0, 230, 118, 0) 60%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Fade-in on scroll - triggered by IntersectionObserver */
+.fade-in {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* CTA Button interactions - CSS only */
+.cta-static {
+  transition: transform 0.12s ease-out;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.cta-static:hover {
+  transform: translateY(-1px);
+}
+
+.cta-static:active {
+  transform: scale(0.98);
+}
+
+/* Feature cards */
+.feature-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.feature-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 230, 118, 0.3);
+}
+
+/* Pricing cards */
+.pricing-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 230, 118, 0.4);
+}
+
+.pricing-card.featured {
+  border: 2px solid #00e676;
+  background: rgba(0, 230, 118, 0.05);
+}
+
+/* Testimonial cards */
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+/* Static grid overlay - no animation */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: 
+    linear-gradient(rgba(0, 230, 118, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 230, 118, 0.3) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+/* Section spacing */
+.section-spacing {
+  padding: 6rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding: 8rem 2rem;
+  }
+}
+
+/* Responsive text sizes */
+.hero-heading {
+  font-size: 3rem;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+@media (min-width: 640px) {
+  .hero-heading {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-heading {
+    font-size: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-heading {
+    font-size: 6rem;
+  }
+}
+
+/* Performance optimizations */
+.static-landing * {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .cta-static,
+  .feature-card,
+  .pricing-card {
+    transition: none;
+  }
+}
