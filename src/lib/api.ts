@@ -364,6 +364,14 @@ class ApiClient {
     return this.request('/api/live/status');
   }
 
+  async getSeasonHistory(sport: string, year: number) {
+    return this.request(`/api/history/${sport}/${year}`);
+  }
+
+  async getAccuracyTrend(sport: string, fromYear: number, toYear: number) {
+    return this.request(`/api/history/${sport}/accuracy?from_year=${fromYear}&to_year=${toYear}`);
+  }
+
   async get(endpoint: string) {
     return this.request(endpoint);
   }

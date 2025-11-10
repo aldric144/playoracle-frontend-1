@@ -5,6 +5,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { GameForecastTile } from '../components/dashboard/GameForecastTile';
+import { SeasonArchiveSection } from '../components/dashboard/SeasonArchiveSection';
 import { TrendGraph } from '../components/dashboard/TrendGraph';
 import { Leaderboard } from '../components/dashboard/Leaderboard';
 import { UserProfile } from '../components/dashboard/UserProfile';
@@ -112,6 +113,11 @@ export function Dashboard() {
 
     return (
       <div className="space-y-4">
+        {/* Season Archive Section - only show for NFL and NBA */}
+        {(selectedSport === 'nfl' || selectedSport === 'nba') && (
+          <SeasonArchiveSection sport={selectedSport} />
+        )}
+        
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold text-zinc-200">Upcoming Games</h3>
           <label className="flex items-center gap-2 text-sm text-zinc-400 cursor-pointer">
