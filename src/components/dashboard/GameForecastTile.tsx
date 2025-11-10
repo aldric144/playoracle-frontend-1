@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { api, Game, AIPrediction } from '../../lib/api';
 import { Card, CardContent, CardHeader } from '../ui/card';
 import { Button } from '../ui/button';
@@ -29,33 +29,11 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
   const [submitting, setSubmitting] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const [historicalData, setHistoricalData] = useState<HistoricalMatchup[]>([]);
-  const [containerHeight, setContainerHeight] = useState(450);
-  
-  const containerRef = useRef<HTMLDivElement>(null);
-  const frontRef = useRef<HTMLDivElement>(null);
-  const backRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     loadPrediction();
     loadHistoricalData();
   }, [game.id]);
-
-  useLayoutEffect(() => {
-    const measureHeight = () => {
-      const frontHeight = frontRef.current?.scrollHeight || 0;
-      const backHeight = backRef.current?.scrollHeight || 0;
-      const maxHeight = Math.max(450, frontHeight, backHeight) + 16;
-      setContainerHeight(maxHeight);
-    };
-
-    measureHeight();
-    
-    const resizeObserver = new ResizeObserver(measureHeight);
-    if (frontRef.current) resizeObserver.observe(frontRef.current);
-    if (backRef.current) resizeObserver.observe(backRef.current);
-
-    return () => resizeObserver.disconnect();
-  }, [isFlipped, historicalData]);
 
   const loadPrediction = async () => {
     setLoading(true);
@@ -147,23 +125,21 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
   return (
     <div className="relative mb-6" style={{ perspective: '1000px', overflow: 'visible' }}>
       <div 
-        ref={containerRef}
-        className="relative transition-all duration-300 ease-out"
+        className="relative transition-transform duration-600 ease-out"
         style={{
           transformStyle: 'preserve-3d',
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-          height: `${containerHeight}px`,
-          willChange: 'transform, height',
+          minHeight: isFlipped ? '500px' : '450px',
           zIndex: isFlipped ? 10 : 1
         }}
       >
         {/* Front Face - Live Match */}
         <div 
-          ref={frontRef}
-          className="absolute inset-0"
+          className="absolute w-full"
           style={{
             backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden'
+            WebkitBackfaceVisibility: 'hidden',
+            minHeight: '450px'
           }}
         >
           <Card className="bg-zinc-900 border-emerald-500/20 hover:border-emerald-500/40 transition-colors shadow-lg rounded-2xl">
@@ -322,15 +298,15 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
 
         {/* Back Face - Historical Matchups */}
         <div 
-          ref={backRef}
-          className="absolute inset-0"
+          className="absolute w-full"
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)'
+            transform: 'rotateY(180deg)',
+            minHeight: '500px'
           }}
         >
-          <Card className="bg-zinc-900 border-emerald-500/20 shadow-lg rounded-2xl h-full flex flex-col">
+          <Card className="bg-zinc-900 border-emerald-500/20 shadow-lg rounded-2xl flex flex-col">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <Badge variant="outline" className="border-emerald-500/50 text-emerald-400">
@@ -341,8 +317,8 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
                 </span>
               </div>
             </CardHeader>
-            <CardContent className="space-y-3 flex-1 flex flex-col">
-              <div className="space-y-2 flex-1">
+            <CardContent className="space-y-3 flex flex-col">
+              <div className="space-y-2 overflow-y-auto max-h-[60vh] pr-1">
                 {historicalData.length > 0 ? (
                   historicalData.map((match, index) => (
                     <div 
