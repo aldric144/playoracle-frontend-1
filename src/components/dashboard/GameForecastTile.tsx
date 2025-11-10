@@ -123,13 +123,13 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
   };
 
   return (
-    <div className="relative" style={{ perspective: '1000px' }}>
+    <div className="relative mb-6" style={{ perspective: '1000px' }}>
       <div 
         className="relative transition-transform duration-600 ease-out"
         style={{
           transformStyle: 'preserve-3d',
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-          minHeight: '400px'
+          minHeight: isFlipped ? '500px' : '450px'
         }}
       >
         {/* Front Face - Live Match */}
@@ -137,10 +137,11 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
           className="absolute w-full"
           style={{
             backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden'
+            WebkitBackfaceVisibility: 'hidden',
+            minHeight: '450px'
           }}
         >
-          <Card className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-colors">
+          <Card className="bg-zinc-900 border-emerald-500/20 hover:border-emerald-500/40 transition-colors shadow-lg rounded-2xl">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <Badge variant="outline" className="border-zinc-700 text-zinc-300">
@@ -300,10 +301,11 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)'
+            transform: 'rotateY(180deg)',
+            minHeight: '500px'
           }}
         >
-          <Card className="bg-zinc-900 border-emerald-500/20">
+          <Card className="bg-zinc-900 border-emerald-500/20 shadow-lg rounded-2xl">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <Badge variant="outline" className="border-emerald-500/50 text-emerald-400">
