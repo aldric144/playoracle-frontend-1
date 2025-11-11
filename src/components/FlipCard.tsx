@@ -25,7 +25,7 @@ export const FlipCard: React.FC<FlipCardProps> = ({
           {frontContent}
           <button
             onClick={handleFlip}
-            className="absolute bottom-4 right-4 px-4 py-2 bg-emerald-500 text-black rounded-lg hover:bg-emerald-600 transition-colors text-sm font-medium shadow-lg shadow-emerald-500/20"
+            className="absolute bottom-4 right-4 px-4 py-2 bg-emerald-500 text-black rounded-lg hover:bg-emerald-600 active:bg-emerald-700 transition-colors text-sm font-medium shadow-lg shadow-emerald-500/20 touch-manipulation min-h-[44px] min-w-[44px]"
           >
             View History
           </button>
@@ -36,7 +36,7 @@ export const FlipCard: React.FC<FlipCardProps> = ({
           {backContent}
           <button
             onClick={handleFlip}
-            className="absolute bottom-4 right-4 px-4 py-2 bg-zinc-700 text-white rounded-lg hover:bg-zinc-600 transition-colors text-sm font-medium shadow-lg"
+            className="absolute bottom-4 right-4 px-4 py-2 bg-zinc-700 text-white rounded-lg hover:bg-zinc-600 active:bg-zinc-500 transition-colors text-sm font-medium shadow-lg touch-manipulation min-h-[44px] min-w-[44px]"
           >
             Back to Live
           </button>
@@ -56,6 +56,7 @@ export const FlipCard: React.FC<FlipCardProps> = ({
           min-height: 600px;
           transition: transform 0.6s;
           transform-style: preserve-3d;
+          will-change: transform;
         }
 
         .flip-card.flipped {
@@ -71,10 +72,23 @@ export const FlipCard: React.FC<FlipCardProps> = ({
           -webkit-backface-visibility: hidden;
           border-radius: 0.5rem;
           overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
         }
 
         .flip-card-back {
           transform: rotateY(180deg);
+        }
+
+        @media (max-width: 768px) {
+          .flip-card-container {
+            min-height: 500px;
+          }
+          
+          .flip-card,
+          .flip-card-front,
+          .flip-card-back {
+            min-height: 500px;
+          }
         }
       `}</style>
     </div>

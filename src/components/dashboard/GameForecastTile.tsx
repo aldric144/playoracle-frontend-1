@@ -130,7 +130,8 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
           transformStyle: 'preserve-3d',
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
           minHeight: isFlipped ? '500px' : '450px',
-          zIndex: isFlipped ? 10 : 1
+          zIndex: isFlipped ? 10 : 1,
+          willChange: 'transform'
         }}
       >
         {/* Front Face - Live Match */}
@@ -281,7 +282,7 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
               onClick={() => setIsFlipped(true)}
               variant="outline"
               size="sm"
-              className="w-full border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10"
+              className="w-full border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10 active:bg-emerald-500/20 touch-manipulation min-h-[44px]"
             >
               <History className="w-4 h-4 mr-2" />
               View History
@@ -358,7 +359,7 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
                   onClick={() => setIsFlipped(false)}
                   variant="outline"
                   size="sm"
-                  className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800"
+                  className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800 active:bg-zinc-700 touch-manipulation min-h-[44px]"
                 >
                   Back to Live
                 </Button>
