@@ -213,34 +213,24 @@ export function Dashboard() {
                   <label className="text-sm font-medium text-zinc-300 mb-2 block">
                     Select Sport
                   </label>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="sport-selection">
                     {sports.map((sport) => (
-                      <Button
+                      <button
                         key={sport.id}
-                        variant={selectedSport === sport.id ? 'default' : 'outline'}
                         onClick={() => setSelectedSport(sport.id)}
-                        className={
-                          selectedSport === sport.id
-                            ? 'bg-green-500 text-black hover:bg-green-600'
-                            : 'border-zinc-700 text-zinc-300 hover:bg-zinc-800'
-                        }
+                        className={`sport-button ${selectedSport === sport.id ? 'active' : ''}`}
                       >
                         {sport.icon} {sport.name}
-                      </Button>
+                      </button>
                     ))}
                     {specialSports.map((sport) => (
-                      <Button
+                      <button
                         key={sport.id}
-                        variant={selectedSport === sport.id ? 'default' : 'outline'}
                         onClick={() => setSelectedSport(sport.id)}
-                        className={
-                          selectedSport === sport.id
-                            ? 'bg-green-500 text-black hover:bg-green-600'
-                            : 'border-zinc-700 text-zinc-300 hover:bg-zinc-800'
-                        }
+                        className={`sport-button ${selectedSport === sport.id ? 'active' : ''}`}
                       >
                         {sport.icon} {sport.name}
-                      </Button>
+                      </button>
                     ))}
                   </div>
                 </div>

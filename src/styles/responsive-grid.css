@@ -20,8 +20,8 @@
   }
 }
 
-/* Tablet: 768px - 1279px - 2 columns */
-@media (min-width: 768px) and (max-width: 1279px) {
+/* Tablet: 768px - 1023px - 2 columns */
+@media (min-width: 768px) and (max-width: 1023px) {
   .sports-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
@@ -29,12 +29,20 @@
   }
 }
 
-/* Desktop: ≥ 1280px - 3 columns */
-@media (min-width: 1280px) {
+/* Desktop: ≥ 1024px - 3-4 columns */
+@media (min-width: 1024px) {
   .sports-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
     padding: 1.5rem;
+  }
+}
+
+/* Large Desktop: ≥ 1440px - Optimize spacing */
+@media (min-width: 1440px) {
+  .sports-grid {
+    gap: 2rem;
+    padding: 2rem;
   }
 }
 
@@ -95,8 +103,8 @@
   }
 }
 
-/* Tablets (768px - 1279px) */
-@media (min-width: 768px) and (max-width: 1279px) {
+/* Tablets (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
   .dashboard-layout {
     padding: 1.5rem;
     gap: 2rem;
@@ -108,8 +116,8 @@
   }
 }
 
-/* Desktop (≥ 1280px) */
-@media (min-width: 1280px) {
+/* Desktop (≥ 1024px) */
+@media (min-width: 1024px) {
   .dashboard-layout {
     padding: 2rem;
     gap: 2.5rem;
@@ -202,6 +210,85 @@
   
   .game-card {
     min-height: 350px;
+  }
+}
+
+/* ============================================
+   SPORT BUTTON STYLING (NEON EMERALD)
+   ============================================ */
+
+.sport-button {
+  background: linear-gradient(145deg, #111827, #1F2937);
+  border: 1px solid #10B981;
+  color: #D1FAE5;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease-in-out;
+  box-shadow: inset 0 0 0 0 #10B981;
+  cursor: pointer;
+}
+
+.sport-button:hover {
+  background: linear-gradient(145deg, #10B981, #059669);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.sport-button.active {
+  background: linear-gradient(145deg, #047857, #065F46);
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.7);
+}
+
+/* Sport Selection Container */
+.sport-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+/* Mobile: Horizontal scroll for sport buttons */
+@media (max-width: 1023px) {
+  .sport-selection {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .sport-selection::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .sport-button {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
+/* ============================================
+   UPCOMING GAMES GRID (AUTO-FIT)
+   ============================================ */
+
+.upcoming-games {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 1023px) {
+  .upcoming-games {
+    grid-template-columns: 1fr;
   }
 }
 
