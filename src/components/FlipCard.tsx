@@ -48,19 +48,35 @@ export const FlipCard: React.FC<FlipCardProps> = ({
           perspective: 1000px;
           width: 100%;
           min-height: 600px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .flip-card {
           position: relative;
           width: 100%;
           min-height: 600px;
-          transition: transform 0.6s;
+          max-height: 85vh;
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
           transform-style: preserve-3d;
           will-change: transform;
         }
 
         .flip-card.flipped {
           transform: rotateY(180deg);
+          animation: fadeScaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeScaleIn {
+          0% {
+            opacity: 0.8;
+            transform: rotateY(180deg) scale(0.95);
+          }
+          100% {
+            opacity: 1;
+            transform: rotateY(180deg) scale(1);
+          }
         }
 
         .flip-card-front,
@@ -68,11 +84,14 @@ export const FlipCard: React.FC<FlipCardProps> = ({
           position: absolute;
           width: 100%;
           min-height: 600px;
+          max-height: 85vh;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
           border-radius: 0.5rem;
           overflow-y: auto;
           -webkit-overflow-scrolling: touch;
+          display: flex;
+          flex-direction: column;
         }
 
         .flip-card-back {
@@ -88,6 +107,20 @@ export const FlipCard: React.FC<FlipCardProps> = ({
           .flip-card-front,
           .flip-card-back {
             min-height: 500px;
+            max-height: 85vh;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .flip-card-container {
+            min-height: 450px;
+          }
+          
+          .flip-card,
+          .flip-card-front,
+          .flip-card-back {
+            min-height: 450px;
+            max-height: 90vh;
           }
         }
       `}</style>

@@ -123,15 +123,17 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
   };
 
   return (
-    <div className="relative mb-6" style={{ perspective: '1000px', overflow: 'visible' }}>
+    <div className="relative mb-6" style={{ perspective: '1000px', overflow: 'visible', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div 
         className="relative transition-transform duration-600 ease-out"
         style={{
           transformStyle: 'preserve-3d',
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
           minHeight: isFlipped ? '500px' : '450px',
+          maxHeight: '85vh',
           zIndex: isFlipped ? 10 : 1,
-          willChange: 'transform'
+          willChange: 'transform',
+          animation: isFlipped ? 'fadeScaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
         }}
       >
         {/* Front Face - Live Match */}
@@ -140,7 +142,10 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
-            minHeight: '450px'
+            minHeight: '450px',
+            maxHeight: '85vh',
+            display: 'flex',
+            flexDirection: 'column'
           }}
         >
           <Card className="bg-zinc-900 border-emerald-500/20 hover:border-emerald-500/40 transition-colors shadow-lg rounded-2xl">
@@ -304,7 +309,11 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)',
-            minHeight: '500px'
+            minHeight: '500px',
+            maxHeight: '85vh',
+            display: 'flex',
+            flexDirection: 'column',
+            overflowY: 'auto'
           }}
         >
           <Card className="bg-zinc-900 border-emerald-500/20 shadow-lg rounded-2xl flex flex-col">

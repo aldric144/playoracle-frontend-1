@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:responsive": "playwright test tests/responsive-viewport.spec.ts",
+    "test:responsive:headed": "playwright test tests/responsive-viewport.spec.ts --headed",
+    "test:responsive:ui": "playwright test tests/responsive-viewport.spec.ts --ui"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -64,6 +67,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
+    "@playwright/test": "^1.56.1",
     "@types/node": "^24.10.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

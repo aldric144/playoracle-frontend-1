@@ -1,0 +1,221 @@
+/* PlayOracle™ - Unified Grid System for All 18 Sports */
+
+/* ============================================
+   UNIFIED GRID BREAKPOINTS
+   ============================================ */
+
+/* Base grid layout */
+.sports-grid {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Mobile: < 768px - 1 column (full width) */
+@media (max-width: 767px) {
+  .sports-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+}
+
+/* Tablet: 768px - 1279px - 2 columns */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .sports-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+}
+
+/* Desktop: ≥ 1280px - 3 columns */
+@media (min-width: 1280px) {
+  .sports-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    padding: 1.5rem;
+  }
+}
+
+/* ============================================
+   HISTORICAL MATCHUPS & UPCOMING GAMES LAYOUT
+   ============================================ */
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Historical Matchups Section */
+.historical-section {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+/* Upcoming Games Section */
+.upcoming-games-section {
+  width: 100%;
+}
+
+/* Normalize spacing between sections */
+.historical-section + .upcoming-games-section {
+  margin-top: 0;
+}
+
+/* ============================================
+   RESPONSIVE PADDING & MARGINS
+   ============================================ */
+
+/* Small phones (< 375px) */
+@media (max-width: 374px) {
+  .dashboard-layout {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+  
+  .historical-section,
+  .upcoming-games-section {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Standard phones (375px - 767px) */
+@media (min-width: 375px) and (max-width: 767px) {
+  .dashboard-layout {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+  
+  .historical-section,
+  .upcoming-games-section {
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* Tablets (768px - 1279px) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .dashboard-layout {
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+  
+  .historical-section,
+  .upcoming-games-section {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Desktop (≥ 1280px) */
+@media (min-width: 1280px) {
+  .dashboard-layout {
+    padding: 2rem;
+    gap: 2.5rem;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+  
+  .historical-section,
+  .upcoming-games-section {
+    margin-bottom: 2rem;
+  }
+}
+
+/* ============================================
+   CARD SPACING & ALIGNMENT
+   ============================================ */
+
+.game-card {
+  width: 100%;
+  height: auto;
+  min-height: 450px;
+}
+
+/* Ensure consistent card heights in grid */
+.sports-grid > * {
+  height: 100%;
+}
+
+/* ============================================
+   MODAL & DIALOG FIXES
+   ============================================ */
+
+/* Prevent modals from running off-screen */
+.modal-container,
+[role="dialog"] {
+  max-height: 85vh !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Modal animation */
+@keyframes fadeScaleIn {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-enter {
+  animation: fadeScaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   DARK THEME CONSISTENCY
+   ============================================ */
+
+/* Maintain PlayOracle™ dark-emerald theme */
+.sports-grid,
+.dashboard-layout,
+.historical-section,
+.upcoming-games-section {
+  background-color: transparent;
+}
+
+/* Card shadows */
+.game-card {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.game-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.2), 0 4px 6px -2px rgba(16, 185, 129, 0.1);
+}
+
+/* ============================================
+   ORIENTATION SUPPORT
+   ============================================ */
+
+/* Landscape mode on mobile */
+@media (orientation: landscape) and (max-height: 500px) {
+  .modal-container,
+  [role="dialog"] {
+    max-height: 90vh !important;
+  }
+  
+  .game-card {
+    min-height: 350px;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .sports-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  .game-card {
+    page-break-inside: avoid;
+  }
+}
