@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../../lib/api';
 import { Loader2 } from 'lucide-react';
+import { PredictiveAccuracyLeaderboard } from './PredictiveAccuracyLeaderboard';
 
 interface CoachCornerProps {
   gameId: string;
@@ -62,6 +63,9 @@ export function CoachCorner({ gameId }: CoachCornerProps) {
           </li>
         </ul>
       </div>
+
+      {/* Predictive Accuracy Leaderboard */}
+      <PredictiveAccuracyLeaderboard />
 
       <div className="p-4 bg-zinc-800 rounded-lg border border-zinc-700">
         <h3 className="text-sm font-semibold text-green-400 mb-2">AI Analysis</h3>

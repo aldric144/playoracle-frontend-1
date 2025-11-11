@@ -372,6 +372,14 @@ class ApiClient {
     return this.request(`/api/history/${sport}/accuracy?from_year=${fromYear}&to_year=${toYear}`);
   }
 
+  async getAIAccuracy() {
+    return this.request('/api/ai/accuracy');
+  }
+
+  async getSportAIAccuracy(sport: string) {
+    return this.request(`/api/ai/accuracy/${sport}`);
+  }
+
   async get(endpoint: string) {
     return this.request(endpoint);
   }
