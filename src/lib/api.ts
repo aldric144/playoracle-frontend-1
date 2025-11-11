@@ -380,6 +380,18 @@ class ApiClient {
     return this.request(`/api/ai/accuracy/${sport}`);
   }
 
+  async getAICommentary(sport: string, season: number) {
+    return this.request(`/api/ai/commentary/${sport}/${season}`);
+  }
+
+  async getLatestAICommentary(sport: string) {
+    return this.request(`/api/ai/commentary/${sport}`);
+  }
+
+  async getCommentaryLog(limit: number = 50) {
+    return this.request(`/api/ai/commentary-log?limit=${limit}`);
+  }
+
   async get(endpoint: string) {
     return this.request(endpoint);
   }
