@@ -1,0 +1,284 @@
+/* PlayOracle™ - Comprehensive Mobile & Tablet Optimizations */
+
+/* ============================================
+   VIEWPORT & DEVICE-SPECIFIC OPTIMIZATIONS
+   ============================================ */
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari viewport height fix */
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+  
+  /* Prevent iOS zoom on input focus */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Android Chrome specific optimizations */
+@media screen and (max-width: 768px) {
+  /* Prevent text size adjustment on orientation change */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Small phones (iPhone SE, Galaxy S8) - 320px to 375px */
+@media (max-width: 375px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+  }
+  
+  h3 {
+    font-size: 1.125rem;
+  }
+}
+
+/* Standard phones (iPhone 12/13/14, Galaxy S21/S22/S23) - 376px to 428px */
+@media (min-width: 376px) and (max-width: 428px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Large phones (iPhone Pro Max, Galaxy S23 Ultra) - 429px to 480px */
+@media (min-width: 429px) and (max-width: 480px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Small tablets (iPad Mini) - 481px to 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  /* Two-column layout for tablets */
+  .grid-cols-1 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Standard tablets (iPad, Galaxy Tab) - 769px to 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  
+  /* Three-column layout for larger tablets */
+  .grid-cols-1.md\\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Desktop - 1025px and above */
+@media (min-width: 1025px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* ============================================
+   TOUCH OPTIMIZATIONS
+   ============================================ */
+
+/* Ensure all interactive elements have proper touch targets */
+button, a, input, select, textarea, [role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(16, 185, 129, 0.2);
+}
+
+/* Remove tap highlight on non-interactive elements */
+div, span, p, h1, h2, h3, h4, h5, h6 {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Improve scrolling performance */
+.overflow-y-auto, .overflow-x-auto, [class*="overflow-"] {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   ORIENTATION SUPPORT
+   ============================================ */
+
+/* Portrait orientation optimizations */
+@media (orientation: portrait) {
+  .flip-card-container {
+    min-height: 450px;
+  }
+  
+  .grid-cols-1 {
+    gap: 1rem;
+  }
+}
+
+/* Landscape orientation optimizations */
+@media (orientation: landscape) and (max-height: 500px) {
+  .flip-card-container {
+    min-height: 350px;
+  }
+  
+  header {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  footer {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+/* GPU acceleration for animations */
+.flip-card, [class*="transition-"], [class*="animate-"] {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .flip-card {
+    transition: none !important;
+  }
+}
+
+/* ============================================
+   DARK MODE CONSISTENCY
+   ============================================ */
+
+/* Ensure dark theme works across all devices */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* ============================================
+   SAFE AREA INSETS (for notched devices)
+   ============================================ */
+
+/* iPhone X/11/12/13/14/15 notch support */
+@supports (padding: max(0px)) {
+  header {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+  
+  footer {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+  
+  .container {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* ============================================
+   TABLET-SPECIFIC OPTIMIZATIONS
+   ============================================ */
+
+/* iPad specific */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+  
+  /* Optimize for iPad Retina displays */
+  .flip-card-container {
+    min-height: 550px;
+  }
+  
+  /* Better spacing for tablet touch */
+  .grid {
+    gap: 1.5rem;
+  }
+}
+
+/* Galaxy Tab specific */
+@media only screen 
+  and (min-device-width: 800px) 
+  and (max-device-width: 1280px) {
+  
+  /* Optimize for Galaxy Tab displays */
+  .flip-card-container {
+    min-height: 550px;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY ENHANCEMENTS
+   ============================================ */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  button, a {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   PRINT OPTIMIZATIONS
+   ============================================ */
+
+@media print {
+  header, footer, .no-print {
+    display: none;
+  }
+  
+  .flip-card {
+    transform: none !important;
+  }
+  
+  * {
+    background: white !important;
+    color: black !important;
+  }
+}
