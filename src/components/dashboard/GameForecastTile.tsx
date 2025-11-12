@@ -123,7 +123,7 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
   };
 
   return (
-    <div className="relative mb-6" style={{ perspective: '1000px', overflow: 'visible', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div className="match-card relative mb-6" style={{ perspective: '1000px', overflow: 'visible', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div 
         className="relative transition-transform duration-600 ease-out"
         style={{
@@ -160,7 +160,7 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
-        <div className="space-y-2">
+        <div className="teams space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-zinc-200">{game.home_team}</span>
             <span className="text-xs text-zinc-500">HOME</span>
@@ -201,7 +201,7 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
 
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" size="sm" className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800">
+                <Button variant="outline" size="sm" className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800" style={{ width: '100%' }}>
                   <AlertCircle className="w-4 h-4 mr-2" />
                   View Analysis
                 </Button>
@@ -219,7 +219,7 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
 
             <Dialog open={showPredictionDialog} onOpenChange={setShowPredictionDialog}>
               <DialogTrigger asChild>
-                <Button className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold">
+                <Button className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold" style={{ width: '100%' }}>
                   <TrendingUp className="w-4 h-4 mr-2" />
                   Make Your Prediction
                 </Button>
@@ -288,6 +288,7 @@ export function GameForecastTile({ game }: GameForecastTileProps) {
               variant="outline"
               size="sm"
               className="w-full border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10 active:bg-emerald-500/20 touch-manipulation min-h-[44px]"
+              style={{ width: '100%' }}
             >
               <History className="w-4 h-4 mr-2" />
               View History

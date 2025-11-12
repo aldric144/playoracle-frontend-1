@@ -69,6 +69,11 @@
    HISTORICAL MATCHUPS & UPCOMING GAMES LAYOUT
    ============================================ */
 
+.games-container {
+  width: 100%;
+  display: block;
+}
+
 .dashboard-layout {
   display: flex;
   flex-direction: column;
@@ -307,33 +312,64 @@
 
 .upcoming-games {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 24px;
+  width: 100%;
+  justify-items: center;
+  align-items: start;
   margin-top: 2rem;
+  padding: 0 2rem;
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .upcoming-games {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    padding: 0 1rem;
+  }
 }
 
 /* Mobile: 1 column */
 @media (max-width: 767px) {
   .upcoming-games {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
+    padding: 0 0.5rem;
   }
 }
 
-/* Tablet: 2 columns */
-@media (min-width: 768px) and (max-width: 1279px) {
-  .upcoming-games {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-  }
+/* ============================================
+   MATCH CARD STYLING
+   ============================================ */
+
+.match-card {
+  background: #1E293B;
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  padding: 16px;
+  color: #E5E7EB;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* Desktop: 3-4 columns with auto-fit */
-@media (min-width: 1280px) {
-  .upcoming-games {
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 24px;
-  }
+.match-card .teams {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.match-card button {
+  width: 100%;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 10px;
+  margin-top: 8px;
 }
 
 /* ============================================
