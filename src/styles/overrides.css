@@ -1,4 +1,140 @@
 /* ============================================
+   PLAYORACLE™ - SPORTS TAB BUTTON REDESIGN
+   Emerald-dark aesthetic with responsive grid layout
+   ============================================ */
+
+/* Sports Tab Grid Container - Responsive Layout */
+.sports-tab-grid {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+/* Desktop: 5 columns (4-5 buttons per row depending on width) */
+@media (min-width: 1280px) {
+  .sports-tab-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+/* Tablet: 3 columns */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .sports-tab-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* Mobile: 2 columns */
+@media (max-width: 767px) {
+  .sports-tab-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+/* Sports Tab Button - Emerald Dark Theme */
+.sports-tab-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 12px 20px;
+  background: #101626;
+  color: #E5E7EB;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out, background 200ms ease-in-out;
+  box-shadow: 0 0 0 rgba(16, 185, 129, 0);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hover State - Gradient + Glow */
+.sports-tab-button:hover {
+  background: linear-gradient(135deg, #10B981, #047857);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+  transform: scale(1.04);
+  color: #ffffff;
+}
+
+/* Active/Pressed State - Tactile Feedback */
+.sports-tab-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.45);
+}
+
+/* Selected/Active State - Solid Emerald */
+.sports-tab-button.active {
+  background: #10B981;
+  color: #0a0f1f;
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.5);
+  font-weight: 700;
+}
+
+/* Ripple/Glow Effect on Tap (Mobile) */
+.sports-tab-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at center, rgba(16, 185, 129, 0.35), transparent 60%);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 300ms ease, opacity 400ms ease;
+  pointer-events: none;
+}
+
+.sports-tab-button:active::after {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .sports-tab-button,
+  .sports-tab-button::after {
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  .sports-tab-button:hover {
+    transform: none !important;
+  }
+  
+  .sports-tab-button:active {
+    transform: none !important;
+  }
+}
+
+/* Mobile Font Size Adjustment */
+@media (max-width: 767px) {
+  .sports-tab-button {
+    font-size: 0.875rem;
+    padding: 10px 14px;
+  }
+}
+
+/* Tablet Font Size Adjustment */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .sports-tab-button {
+    font-size: 0.9rem;
+    padding: 11px 18px;
+  }
+}
+
+/* ============================================
    PLAYORACLE™ - UPCOMING GAMES COMPONENT-LEVEL FIX
    Refactored wrapper structure for proper grid layout
    ============================================ */

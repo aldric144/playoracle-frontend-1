@@ -215,12 +215,13 @@ export function Dashboard() {
                   <label className="text-sm font-medium text-zinc-300 mb-2 block">
                     Select Sport
                   </label>
-                  <div className="sport-selection">
+                  <div className="sports-tab-grid">
                     {sports.map((sport) => (
                       <button
                         key={sport.id}
                         onClick={() => setSelectedSport(sport.id)}
-                        className={`sport-button ${selectedSport === sport.id ? 'active' : ''}`}
+                        className={`sports-tab-button ${selectedSport === sport.id ? 'active' : ''}`}
+                        aria-pressed={selectedSport === sport.id}
                       >
                         {sport.icon} {sport.name}
                       </button>
@@ -229,7 +230,8 @@ export function Dashboard() {
                       <button
                         key={sport.id}
                         onClick={() => setSelectedSport(sport.id)}
-                        className={`sport-button ${selectedSport === sport.id ? 'active' : ''}`}
+                        className={`sports-tab-button ${selectedSport === sport.id ? 'active' : ''}`}
+                        aria-pressed={selectedSport === sport.id}
                       >
                         {sport.icon} {sport.name}
                       </button>
