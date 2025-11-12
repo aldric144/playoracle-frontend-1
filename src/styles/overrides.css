@@ -1,47 +1,37 @@
 /* ============================================
-   PLAYORACLE™ - UPCOMING GAMES MASTER FIX
-   Final override to force grid layout across all devices
+   PLAYORACLE™ - UPCOMING GAMES COMPONENT-LEVEL FIX
+   Refactored wrapper structure for proper grid layout
    ============================================ */
 
-/* --- UPCOMING GAMES MASTER FIX --- */
-.upcoming-games {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
-  gap: 28px !important;
-  width: 100% !important;
+/* Wrapper container - full width, block display */
+.upcoming-games-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  display: block;
+}
+
+/* Grid container - multi-column layout */
+.upcoming-games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  width: 100%;
   justify-items: center;
   align-items: start;
-  padding: 0 2rem !important;
-  margin: 2rem auto !important;
-  max-width: 1600px;
   box-sizing: border-box;
 }
 
-.upcoming-games * {
+.upcoming-games-grid * {
   box-sizing: border-box;
 }
 
-/* Remove parent flex constraints */
-.games-container,
-.dashboard-content,
-.main-section {
-  display: block !important;
-  width: 100% !important;
-  max-width: none !important;
-}
-
-/* Ensure CardContent doesn't constrain the grid */
-.upcoming-games {
-  /* Override any parent flex/column constraints */
-  flex-direction: row !important;
-}
-
-/* Card design */
+/* Card design with hover effects */
 .match-card {
   background: #1E293B;
-  border: 1px solid rgba(16,185,129,0.2);
+  border: 1px solid rgba(16,185,129,0.3);
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.4);
   padding: 18px;
   color: #E5E7EB;
   width: 100%;
@@ -49,11 +39,16 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  text-align: left;
+  transition: all 0.2s ease-in-out;
+}
+
+.match-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(16,185,129,0.35);
 }
 
 .match-card button {
-  width: 100% !important;
+  width: 100%;
   border-radius: 8px;
   font-weight: 600;
   padding: 10px;
@@ -62,17 +57,23 @@
 
 /* Responsive breakpoints */
 @media (max-width: 1279px) {
-  .upcoming-games {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
-    gap: 20px !important;
-    padding: 0 1.2rem !important;
+  .upcoming-games-wrapper {
+    padding: 1.5rem;
+  }
+  
+  .upcoming-games-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
   }
 }
 
 @media (max-width: 767px) {
-  .upcoming-games {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-    padding: 0 0.5rem !important;
+  .upcoming-games-wrapper {
+    padding: 1rem;
+  }
+  
+  .upcoming-games-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 }
