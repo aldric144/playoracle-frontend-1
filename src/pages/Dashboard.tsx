@@ -135,7 +135,7 @@ export function Dashboard() {
         ) : games.length === 0 ? (
           <div className="text-center py-8 text-zinc-400">No upcoming games</div>
         ) : (
-          <div className="games-container">
+          <div className="dashboard-content games-container">
             <div className="sports-grid upcoming-games pb-16">
               {games.map((game) => (
                 <GameForecastTile key={game.id} game={game} />
