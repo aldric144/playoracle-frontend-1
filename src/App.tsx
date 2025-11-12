@@ -5,11 +5,13 @@ import { LandingPageLite } from './pages/LandingPageLite';
 import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
 import { Dashboard } from './pages/Dashboard';
+import { ResetPassword } from './pages/ResetPassword';
 import { TermsOfUse } from './pages/TermsOfUse';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { EventDetail } from './pages/EventDetail';
 import { EventSuccess } from './pages/EventSuccess';
 import { EventCancel } from './pages/EventCancel';
+import { Toaster } from './components/ui/sonner';
 import { Loader2 } from 'lucide-react';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -61,6 +63,7 @@ function AppRoutes() {
           </PublicRoute>
         }
       />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route
         path="/dashboard"
         element={
@@ -90,6 +93,7 @@ function App() {
     <Router>
       <AuthProvider>
         <AppRoutes />
+        <Toaster position="top-right" richColors />
       </AuthProvider>
     </Router>
   );
