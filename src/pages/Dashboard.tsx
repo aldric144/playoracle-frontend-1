@@ -172,7 +172,7 @@ export function Dashboard() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-6">
+      <div className="mx-auto w-full max-w-[1600px] px-4 py-6">
         <div className="mb-6 p-4 bg-zinc-900 rounded-lg border border-zinc-800">
           <p className="text-sm text-zinc-400 text-center">
             PlayOracle is an analytical and learning tool, not a gambling platform. 
