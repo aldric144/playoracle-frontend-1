@@ -117,18 +117,30 @@ export function Dashboard() {
         {(selectedSport === 'nfl' || selectedSport === 'nba') && (
           <SeasonArchiveSection sport={selectedSport} />
         )}
-        
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-zinc-200">Upcoming Games</h3>
-          <label className="flex items-center gap-2 text-sm text-zinc-400 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={showAllGames}
-              onChange={(e) => setShowAllGames(e.target.checked)}
-              className="w-4 h-4 rounded border-zinc-700 bg-zinc-800 text-green-500 focus:ring-green-500"
-            />
-            Show All Upcoming Games
-          </label>
+      </div>
+    );
+  };
+
+  const renderUpcomingGames = () => {
+    if (['boxing', 'mma', 'tennis', 'volleyball', 'rugby', 'cricket', 'golf', 'tabletennis', 'nascar', 'motogp', 'cycling'].includes(selectedSport)) {
+      return null;
+    }
+
+    return (
+      <>
+        <div className="mx-auto w-full max-w-[1600px] px-4 mb-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-semibold text-zinc-200">Upcoming Games</h3>
+            <label className="flex items-center gap-2 text-sm text-zinc-400 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={showAllGames}
+                onChange={(e) => setShowAllGames(e.target.checked)}
+                className="w-4 h-4 rounded border-zinc-700 bg-zinc-800 text-green-500 focus:ring-green-500"
+              />
+              Show All Upcoming Games
+            </label>
+          </div>
         </div>
         {loading ? (
           <div className="text-center py-8 text-zinc-400">Loading games...</div>
@@ -143,7 +155,7 @@ export function Dashboard() {
             </div>
           </section>
         )}
-      </div>
+      </>
     );
   };
 
@@ -242,6 +254,8 @@ export function Dashboard() {
                 {renderSportContent()}
               </CardContent>
             </Card>
+
+            {renderUpcomingGames()}
 
           </TabsContent>
 
