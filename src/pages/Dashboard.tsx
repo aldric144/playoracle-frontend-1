@@ -215,7 +215,7 @@ export function Dashboard() {
                   <label className="text-sm font-medium text-zinc-300 mb-2 block">
                     Select Sport
                   </label>
-                  <div className="sports-tab-grid">
+                  <div className="sport-selection sports-tab-grid">
                     {sports.map((sport) => (
                       <button
                         key={sport.id}
