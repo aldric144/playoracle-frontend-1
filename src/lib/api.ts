@@ -1,5 +1,17 @@
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
+function sanitizeYear(value: unknown, fallback?: number): number {
+  const currentYear = new Date().getFullYear();
+  const defaultYear = fallback ?? currentYear;
+  
+  if (typeof value === 'number') {
+    return Number.isFinite(value) ? value : defaultYear;
+  }
+  
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : defaultYear;
+}
+
 export interface User {
   id: string;
   email: string;
@@ -365,11 +377,14 @@ class ApiClient {
   }
 
   async getSeasonHistory(sport: string, year: number) {
-    return this.request(`/api/history/${sport}/${year}`);
+    const sanitizedYear = sanitizeYear(year);
+    return this.request(`/api/history/${sport}/${sanitizedYear}`);
   }
 
   async getAccuracyTrend(sport: string, fromYear: number, toYear: number) {
-    return this.request(`/api/history/${sport}/accuracy?from_year=${fromYear}&to_year=${toYear}`);
+    const sanitizedFromYear = sanitizeYear(fromYear);
+    const sanitizedToYear = sanitizeYear(toYear);
+    return this.request(`/api/history/${sport}/accuracy?from_year=${sanitizedFromYear}&to_year=${sanitizedToYear}`);
   }
 
   async getAIAccuracy() {
@@ -381,7 +396,8 @@ class ApiClient {
   }
 
   async getAICommentary(sport: string, season: number) {
-    return this.request(`/api/ai/commentary/${sport}/${season}`);
+    const sanitizedSeason = sanitizeYear(season);
+    return this.request(`/api/ai/commentary/${sport}/${sanitizedSeason}`);
   }
 
   async getLatestAICommentary(sport: string) {
